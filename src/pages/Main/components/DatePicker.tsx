@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 import type { UseFormReturn } from 'react-hook-form';
 import { format } from 'date-fns';
 import { useState, forwardRef } from 'react';
-
+import { CalendarIcon } from "lucide-react"
 type Props = {
   form: UseFormReturn<
     { first_date: Date; last_date: Date },
@@ -27,7 +27,7 @@ type Props = {
   name: 'first_date' | 'last_date';
   disabled?: Date;
   title: string;
-  onOpen?: () => void; // 🔹 Yangi prop
+  onOpen?: () => void;
 };
 
 export const DatePicker = forwardRef<HTMLButtonElement, Props>(
@@ -63,7 +63,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, Props>(
                     ) : (
                       <span>dd.mm.yyyy</span>
                     )}
-                    <span className="ml-auto"></span>
+                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                   </Button>
                 </FormControl>
               </PopoverTrigger>
