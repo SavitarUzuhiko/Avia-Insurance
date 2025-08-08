@@ -25,5 +25,29 @@ export const FormTranslate = [
     submit:"Submit",
     travelers: "Travelers",
     age: "age"
-  }
+  },
+  {
+  lang: "RU",
+  first: "Дата первой поездки:",
+  last: "Дата последней поездки:",
+  days_amount: "Количество дней: ",
+  chechbox: "Годовой страховой полис",
+  number_days: "Количество дней в году: ",
+  days: "дней",
+  submit: "Отправить",
+  travelers: "Путешественники",
+  age: "возраст"
+},
+{
+  lang: "UZ",
+  first: "Birinchi safar sanasi:",
+  last: "Oxirgi safar sanasi:",
+  days_amount: "Kunlar soni: ",
+  chechbox: "Yillik sug'urta polisi",
+  number_days: "Bir yildagi kunlar soni: ",
+  days: "kun",
+  submit: "Yuborish",
+  travelers: "Sayohatchilar",
+  age: "yoshi"
+}
 ]

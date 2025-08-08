@@ -30,3 +30,5 @@ export const Countries = [
   { name: "Switzerland", flag: "CH" },
   { name: "Norway", flag: "NO" }
 ]
+
+export const days_array = [10,15,30,45,60,90,180,365]

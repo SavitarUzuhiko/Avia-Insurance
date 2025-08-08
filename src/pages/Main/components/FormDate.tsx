@@ -13,6 +13,7 @@ import type { RootState } from '@/app/store';
 import { setDays } from '@/app/slices/AviaSlice';
 import { FormTranslate } from '@/constants';
 import { Travelers } from './Travelers';
+import { toast, Toaster } from 'sonner';
 
 const FormSchema = z.object({
   first_date: z.date({ error: 'A date is required.' }),
@@ -22,18 +23,16 @@ const FormSchema = z.object({
 });
 
 export function FormDate() {
-  const {day, language} = useSelector((state: RootState) => state.aviaslice);
+  const { day, language, travelers } = useSelector(
+    (state: RootState) => state.aviaslice
+  );
   const dispatch = useDispatch();
-  const [checked , setChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const firstDateRef = useRef<HTMLButtonElement | null>(null);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
-
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    console.log(data);
-  };
 
   const firstDate = form.watch('first_date');
   const lastDate = form.watch('last_date');
@@ -46,55 +45,80 @@ export function FormDate() {
     }
   }, [firstDate, lastDate]);
 
-  const translate = FormTranslate.find(item => item.lang === language);
-  console.log(translate);
+  const translate = FormTranslate.find((item) => item.lang === language);
+
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    if (!(travelers.length > 0)) {
+      toast.error('Travelers is empty');
+    }
+    const submittedData = {
+      ...data,
+      travelers: travelers.map(
+        (t, i) => 'Traveler-' + (i + 1) + ' : ' + t + ' years'
+      ),
+    };
+    console.log(submittedData);
+  };
 
   return (
     <Form {...form}>
+      <Toaster />
       {translate && (
         <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-3 p-3 bg-white rounded-lg'
-      >
-        {/* first_date */}
-        <DatePicker
-          ref={firstDateRef}
-          name='first_date'
-          title={translate.first}
-          form={form}
-        />
-
-        {!checked && (
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='space-y-3 p-3 bg-[#ffffff8d] rounded-lg'
+        >
+          {/* first_date */}
           <DatePicker
-          name='last_date'
-          title={translate.last}
-          disabled={firstDate || undefined}
-          form={form}
-          onOpen={() => {
-            if (!form.getValues('first_date') && firstDateRef.current) {
-              firstDateRef.current.click();
-            }
-          }}
-        />
-        )}
+            ref={firstDateRef}
+            name='first_date'
+            title={translate.first}
+            form={form}
+          />
 
-        <p>
-          {translate.days_amount} <span className='text-red-500 font-bold'>{day}</span>
-        </p>
+          {!checked && (
+            <DatePicker
+              name='last_date'
+              title={translate.last}
+              disabled={firstDate || undefined}
+              form={form}
+              onOpen={() => {
+                if (!form.getValues('first_date') && firstDateRef.current) {
+                  firstDateRef.current.click();
+                }
+              }}
+            />
+          )}
 
-        <div className='flex items-start gap-3'>
-          <Checkbox id='toggle' checked={checked} onClick={() => setChecked(!checked && !!firstDate)} />
-          <Label htmlFor='toggle'>{translate.chechbox}</Label>
-        </div>
+          <p>
+            {translate.days_amount}{' '}
+            <span className='text-red-500 font-bold'>{day}</span>
+          </p>
 
-        {checked && (
-          <DateSelector name='last_date' beginDate={firstDate} title={translate.number_days} days_translate={translate.days} form={form} />
-        )}
+          <div className='flex items-start gap-3'>
+            <Checkbox
+              id='toggle'
+              className='bg-white'
+              checked={checked}
+              onClick={() => setChecked(!checked && !!firstDate)}
+            />
+            <Label htmlFor='toggle'>{translate.chechbox}</Label>
+          </div>
 
-        <Travelers />
+          {checked && (
+            <DateSelector
+              name='last_date'
+              beginDate={firstDate}
+              title={translate.number_days}
+              days_translate={translate.days}
+              form={form}
+            />
+          )}
 
-        <Button type='submit'>Submit</Button>
-      </form>
+          <Travelers />
+
+          <Button type='submit' className='w-full bg-gradient-to-b from-[#f04500] to-[#fdca01]'>Calculate</Button>
+        </form>
       )}
     </Form>
   );

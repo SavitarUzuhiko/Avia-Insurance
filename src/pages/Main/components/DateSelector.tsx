@@ -14,6 +14,7 @@ import {
 import type { UseFormReturn } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { daysToDate } from '../hook';
+import { days_array } from '@/constants';
 
 type Props = {
   name: 'first_date' | 'last_date';
@@ -56,14 +57,14 @@ export const DateSelector = ({ name, title, form, beginDate, days_translate }: P
               }}
             >
               <FormControl>
-                <SelectTrigger className='w-full'>
+                <SelectTrigger className='w-full bg-white'>
                   <SelectValue placeholder="Select a date" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="9">10 {days_translate}</SelectItem>
-                <SelectItem value="14">15 {days_translate}</SelectItem>
-                <SelectItem value="29">30 {days_translate}</SelectItem>
+                {days_array.map(day => (
+                  <SelectItem key={day} value={(day-1).toString()}>{day} {days_translate}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <FormMessage />

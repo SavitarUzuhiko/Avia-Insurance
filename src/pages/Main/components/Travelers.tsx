@@ -39,7 +39,7 @@ export const Travelers = () => {
         <Dropdown age_translate={translate.age}>
           <Button variant='outline' className='w-full'>
             <span className='mr-auto'>
-              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') : 'Number of tourists'}
+              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') + ' years' : 'Number of tourists'}
             </span>
           </Button>
         </Dropdown>
@@ -64,7 +64,7 @@ export function Dropdown({ children, age_translate }: Props) {
       >
         <DropdownMenuLabel className='min-w-[295px]'>
           <span className='mr-auto'>
-              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') : 'Number of tourists'}
+              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') + ' years'  : 'Number of tourists'}
             </span>
         </DropdownMenuLabel>
         <DropdownMenuGroup>
