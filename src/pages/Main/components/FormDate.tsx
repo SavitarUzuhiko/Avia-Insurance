@@ -11,6 +11,8 @@ import { DateSelector } from './DateSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
 import { setDays } from '@/app/slices/AviaSlice';
+import { FormTranslate } from '@/constants';
+import { Travelers } from './Travelers';
 
 const FormSchema = z.object({
   first_date: z.date({ error: 'A date is required.' }),
@@ -20,7 +22,7 @@ const FormSchema = z.object({
 });
 
 export function FormDate() {
-  const {day} = useSelector((state: RootState) => state.aviaslice);
+  const {day, language} = useSelector((state: RootState) => state.aviaslice);
   const dispatch = useDispatch();
   const [checked , setChecked] = useState(false);
   const firstDateRef = useRef<HTMLButtonElement | null>(null);
@@ -44,9 +46,13 @@ export function FormDate() {
     }
   }, [firstDate, lastDate]);
 
+  const translate = FormTranslate.find(item => item.lang === language);
+  console.log(translate);
+
   return (
     <Form {...form}>
-      <form
+      {translate && (
+        <form
         onSubmit={form.handleSubmit(onSubmit)}
         className='space-y-3 p-3 bg-white rounded-lg'
       >
@@ -54,14 +60,14 @@ export function FormDate() {
         <DatePicker
           ref={firstDateRef}
           name='first_date'
-          title='The first trip date:'
+          title={translate.first}
           form={form}
         />
 
         {!checked && (
           <DatePicker
           name='last_date'
-          title='The last trip date:'
+          title={translate.last}
           disabled={firstDate || undefined}
           form={form}
           onOpen={() => {
@@ -73,20 +79,23 @@ export function FormDate() {
         )}
 
         <p>
-          Amount of days: <span className='text-red-500 font-bold'>{day}</span>
+          {translate.days_amount} <span className='text-red-500 font-bold'>{day}</span>
         </p>
 
         <div className='flex items-start gap-3'>
           <Checkbox id='toggle' checked={checked} onClick={() => setChecked(!checked && !!firstDate)} />
-          <Label htmlFor='toggle'>Annual insurance policy</Label>
+          <Label htmlFor='toggle'>{translate.chechbox}</Label>
         </div>
 
         {checked && (
-          <DateSelector name='last_date' beginDate={firstDate} title='Number of days in a year:' form={form} />
+          <DateSelector name='last_date' beginDate={firstDate} title={translate.number_days} days_translate={translate.days} form={form} />
         )}
+
+        <Travelers />
 
         <Button type='submit'>Submit</Button>
       </form>
+      )}
     </Form>
   );
 }

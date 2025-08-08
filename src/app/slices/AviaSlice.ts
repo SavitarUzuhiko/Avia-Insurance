@@ -1,38 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface CounterState {
-  country: string,
-  language: string,
-  day: string
+  country: string;
+  language: string;
+  day: string;
+  travelers: number[];
 }
 
 const initialState: CounterState = {
-  country: 'Belarus',
-  language: 'UZ',
-  day: '0'
-}
+  country: 'Uzbekistan',
+  language: 'GB',
+  day: '0',
+  travelers: [],
+};
 
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
     setCountry: (state, action: PayloadAction<string>) => {
-      state.country = action.payload
+      state.country = action.payload;
     },
     setLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
-      console.log(state.language);
     },
     setDays: (state, action: PayloadAction<string>) => {
-      console.log(state.day);
       state.day = action.payload;
-      console.log(state.day);
+    },
+    setTravelers: (state, action: PayloadAction<number>) => {
+      state.travelers = [...state.travelers, action.payload];
+    },
+    deleteTravelers: (state, action: PayloadAction<number>) => {
+      state.travelers.splice(action.payload, 1);
+      console.log("Payload",action.payload);
+      console.log("State",state.travelers);
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setCountry , setLanguage, setDays} = counterSlice.actions
+export const { setCountry, setLanguage, setDays, setTravelers , deleteTravelers} =
+  counterSlice.actions;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;
