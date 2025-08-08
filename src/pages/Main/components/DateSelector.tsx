@@ -1,4 +1,3 @@
-import type { RootState } from '@/app/store';
 import {
   FormControl,
   FormField,
@@ -12,7 +11,6 @@ import {
   SelectValue,
 } from '@/components/ui';
 import type { UseFormReturn } from 'react-hook-form';
-import { useSelector } from 'react-redux';
 import { daysToDate } from '../hook';
 import { days_array } from '@/constants';
 

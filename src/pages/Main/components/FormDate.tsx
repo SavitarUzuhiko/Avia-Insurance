@@ -58,11 +58,12 @@ export function FormDate() {
       ),
     };
     console.log(submittedData);
+    toast.success('Form submitted successfully. Check your console.');
   };
 
   return (
     <Form {...form}>
-      <Toaster />
+      <Toaster position='top-center' />
       {translate && (
         <form
           onSubmit={form.handleSubmit(onSubmit)}

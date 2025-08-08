@@ -109,10 +109,10 @@ export function PopoverTourist({
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent className='w-24' align='end'>
+      <PopoverContent className='w-24 p-1' align='end'>
         <ScrollArea className='h-40 text-right'>
           {Array.from({ length: 100 }, (_, index) => (
-            <p key={index} onClick={() => dispatch(setTravelers(index + 1))}>
+            <p className='cursor-pointer pr-3' key={index} onClick={() => dispatch(setTravelers(index + 1))}>
               {index + 1} {age_translate}
             </p>
           ))}
