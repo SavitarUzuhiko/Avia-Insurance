@@ -4,7 +4,7 @@ import { MultiLanguage , PopoverLocation} from './components';
 
 export const Navbar = () => {
   return (
-    <nav className='bg-[#055087] text-white flex justify-between items-center px-4 max-w-screen'>
+    <nav className=' text-white flex justify-between items-center mb-10'>
       <div className='flex items-center gap-2'>
         <img src={logo} alt='Vercel Logo' width={80} height={'auto'} />
         <p className='flex justify-between'>

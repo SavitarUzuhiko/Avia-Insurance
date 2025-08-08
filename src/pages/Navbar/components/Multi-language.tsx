@@ -17,7 +17,7 @@ export function MultiLanguage() {
   const dispatch = useDispatch<AppDispatch>();
 
   const setCountryIcon = (value: string) => {
-    const country = countries.find((c) => c.name === value) ?? countries[0];
+    const country = countries.find((c) => c.flag === value) ?? countries[0];
     return (
       <img
         src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${country.flag}.svg`}
@@ -41,8 +41,8 @@ export function MultiLanguage() {
         <SelectGroup>
           <SelectLabel>Countries</SelectLabel>
           {countries.map((country) => (
-            <SelectItem key={country.name} value={country.name}>
-              {setCountryIcon(country.name)} {country.name}
+            <SelectItem key={country.name} value={country.flag}>
+              {setCountryIcon(country.flag)} {country.name}
             </SelectItem>
           ))}
         </SelectGroup>

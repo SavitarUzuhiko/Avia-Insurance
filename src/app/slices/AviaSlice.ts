@@ -8,7 +8,7 @@ export interface CounterState {
 
 const initialState: CounterState = {
   country: 'Belarus',
-  language: 'Uzbek'
+  language: 'UZ'
 }
 
 export const counterSlice = createSlice({

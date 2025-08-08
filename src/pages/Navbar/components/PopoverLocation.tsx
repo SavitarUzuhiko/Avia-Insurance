@@ -21,7 +21,7 @@ export function PopoverLocation() {
       <PopoverContent className='w-64 absolute top-5 left-[-140px] p-2'>
         <div>
           <div className='flex justify-between items-center'>
-            Is your country {country}{' '}
+            Is your country {country} 
             <X width={20} onClick={() => setOpen(false)} />
           </div>
           <div className='mt-3 flex justify-between px-2'>
