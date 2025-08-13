@@ -18,7 +18,7 @@ import {
 import { useState, type ReactNode } from 'react';
 import { ScrollArea } from '@/components/ui';
 import { deleteTravelers, setTravelers } from '@/app/slices/AviaSlice';
-import { X } from 'lucide-react';
+import { ChevronDown, X } from 'lucide-react';
 
 type Props = {
   children: ReactNode;
@@ -39,7 +39,7 @@ export const Travelers = () => {
         <Dropdown age_translate={translate.age}>
           <Button variant='outline' className='w-full'>
             <span className='mr-auto'>
-              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') + ' years' : 'Number of tourists'}
+              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') + ' ' + translate?.years : translate?.tourist_number}
             </span>
           </Button>
         </Dropdown>
@@ -50,8 +50,9 @@ export const Travelers = () => {
 
 export function Dropdown({ children, age_translate }: Props) {
   const [open, setOpen] = useState(false);
-  const { travelers } = useSelector((state: RootState) => state.aviaslice);
+  const { travelers,language } = useSelector((state: RootState) => state.aviaslice);
   const dispatch = useDispatch();
+  const translate = FormTranslate.find((item) => item.lang === language);
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -64,32 +65,32 @@ export function Dropdown({ children, age_translate }: Props) {
       >
         <DropdownMenuLabel className='min-w-[295px]'>
           <span className='mr-auto'>
-              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') + ' years'  : 'Number of tourists'}
+              {travelers.length > 0 ? travelers.map(t => (t)).join(', ') + ' ' + translate?.years  : translate?.tourist_number}
             </span>
         </DropdownMenuLabel>
         <DropdownMenuGroup>
           {travelers.map((traveler, idx) => (
             <DropdownMenuItem
               key={idx}
-              className='focus:bg-[#0080e3] bg-[#0091ff]  text-white mb-1 focus:text-white flex justify-between'
+              className='bg-[#f3f4f6] mb-1 flex justify-between'
             >
               <span>
-                {idx + 1} tourist : {traveler} years
+                {idx + 1} {translate?.tourist} : {traveler} {translate?.years}
               </span>
               <span
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log('hello');
                   dispatch(deleteTravelers(idx));
                 }}
               >
-                <X className='text-white cursor-pointer' />
+                <X className='cursor-pointer' />
               </span>
             </DropdownMenuItem>
           ))}
           <PopoverTourist age_translate={age_translate}>
-            <Button className='w-full bg-red-500 mt-2'>
-              <span className='mr-auto'>+ Add a tourist</span>
+            <Button className='w-full flex justify-between bg-[#0066b3] mt-2'>
+              <span className='mr-auto'>{translate?.add_tourist}</span>
+              <span><ChevronDown /></span>
             </Button>
           </PopoverTourist>
         </DropdownMenuGroup>
@@ -109,7 +110,7 @@ export function PopoverTourist({
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent className='w-24 p-1' align='end'>
+      <PopoverContent className='max-w-28 min-w-24 p-1' align='end'>
         <ScrollArea className='h-40 text-right'>
           {Array.from({ length: 100 }, (_, index) => (
             <p className='cursor-pointer pr-3' key={index} onClick={() => dispatch(setTravelers(index + 1))}>

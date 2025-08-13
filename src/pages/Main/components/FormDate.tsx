@@ -67,7 +67,7 @@ export function FormDate() {
       {translate && (
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-3 p-3 bg-[#ffffff8d] rounded-lg'
+          className='space-y-3 p-3 bg-[#fff] rounded-lg'
         >
           {/* first_date */}
           <DatePicker
@@ -118,7 +118,7 @@ export function FormDate() {
 
           <Travelers />
 
-          <Button type='submit' className='w-full bg-gradient-to-b from-[#f04500] to-[#fdca01]'>Calculate</Button>
+          <Button type='submit' className='w-full bg-[#0066b3] text-lg py-6 rounded-lg'>{translate.calc}</Button>
         </form>
       )}
     </Form>

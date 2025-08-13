@@ -24,7 +24,12 @@ export const FormTranslate = [
     days:"days",
     submit:"Submit",
     travelers: "Travelers",
-    age: "age"
+    age: "age",
+    tourist_number: "Number of tourists",
+    years: "years",
+    add_tourist:"Add tourist",
+    tourist:"tourist",
+    calc:"Calculate"
   },
   {
   lang: "RU",
@@ -36,7 +41,12 @@ export const FormTranslate = [
   days: "дней",
   submit: "Отправить",
   travelers: "Путешественники",
-  age: "возраст"
+  age: "лет",
+  tourist_number: "Количество туристов",
+  years: "лет",
+  add_tourist:"Добавить туристa",
+  tourist: "турист",
+  calc:"Рассчитать"
 },
 {
   lang: "UZ",
@@ -48,6 +58,11 @@ export const FormTranslate = [
   days: "kun",
   submit: "Yuborish",
   travelers: "Sayohatchilar",
-  age: "yoshi"
+  age: "yoshi",
+  tourist_number: "Turistlar soni",
+  years: "yosh",
+  add_tourist:"Turist qo'shish",
+  tourist: "turist",
+  calc:"Hisoblash"
 }
 ]

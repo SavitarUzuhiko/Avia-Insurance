@@ -12,6 +12,14 @@ export const Main = () => {
         {heading?.title}
       </h2>
       <FormDate />
+
+      <p className='text-gray-500 text-sm flex flex-col items-center my-10 leading-6'>
+        <span>
+          I am familiar with the <a href='#' className='underline'>User Agreement, offer</a>{' '}
+        </span>
+        <a href='#' className='underline'>agreement and I</a>
+        <a href='#' className='underline'>consent to the processing of personal data</a>
+      </p>
     </div>
   );
 };

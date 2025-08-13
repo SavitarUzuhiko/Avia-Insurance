@@ -13,9 +13,9 @@ export const Navbar = () => {
         </p>
       </div>
       <div className='flex items-center gap-2'>
-        <p className='bg-[#ffffff2f] p-2 rounded-full border-[1.5px] border-[#ffffff2f]'>
+        <a href="tel:+998915126550" className='bg-[#ffffff2f] p-2 rounded-full border-[1.5px] border-[#ffffff2f]'>
           <Phone className='w-5 h-5' />
-        </p>
+        </a>
         <MultiLanguage />
       </div>
     </nav>

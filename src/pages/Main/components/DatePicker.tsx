@@ -40,7 +40,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, Props>(
         name={name}
         render={({ field }) => (
           <FormItem className="flex flex-col rounded-lg py-1">
-            <FormLabel className="font-normal">{title}</FormLabel>
+            <FormLabel className="font-semibold text-[15px]">{title}</FormLabel>
             <Popover
               open={open}
               onOpenChange={(isOpen) => {
