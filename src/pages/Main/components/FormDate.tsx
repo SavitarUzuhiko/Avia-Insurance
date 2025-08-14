@@ -67,58 +67,65 @@ export function FormDate() {
       {translate && (
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-3 p-3 bg-[#fff] rounded-lg'
+          
         >
-          {/* first_date */}
-          <DatePicker
-            ref={firstDateRef}
-            name='first_date'
-            title={translate.first}
-            form={form}
-          />
-
-          {!checked && (
+          <div className='space-y-3 p-3 bg-[#fff] rounded-xl shadow-lg'>
+            {/* first_date */}
             <DatePicker
-              name='last_date'
-              title={translate.last}
-              disabled={firstDate || undefined}
+              ref={firstDateRef}
+              name='first_date'
+              title={translate.first}
               form={form}
-              onOpen={() => {
-                if (!form.getValues('first_date') && firstDateRef.current) {
-                  firstDateRef.current.click();
-                }
-              }}
             />
-          )}
 
-          <p>
-            {translate.days_amount}{' '}
-            <span className='text-red-500 font-bold'>{day}</span>
-          </p>
+            {!checked && (
+              <DatePicker
+                name='last_date'
+                title={translate.last}
+                disabled={firstDate || undefined}
+                form={form}
+                onOpen={() => {
+                  if (!form.getValues('first_date') && firstDateRef.current) {
+                    firstDateRef.current.click();
+                  }
+                }}
+              />
+            )}
 
-          <div className='flex items-start gap-3'>
-            <Checkbox
-              id='toggle'
-              className='bg-white'
-              checked={checked}
-              onClick={() => setChecked(!checked && !!firstDate)}
-            />
-            <Label htmlFor='toggle'>{translate.chechbox}</Label>
+            <p>
+              {translate.days_amount}{' '}
+              <span className='text-red-500 font-bold'>{day}</span>
+            </p>
+
+            <div className='flex items-start gap-3'>
+              <Checkbox
+                id='toggle'
+                className='bg-white'
+                checked={checked}
+                onClick={() => setChecked(!checked && !!firstDate)}
+              />
+              <Label htmlFor='toggle'>{translate.chechbox}</Label>
+            </div>
+
+            {checked && (
+              <DateSelector
+                name='last_date'
+                beginDate={firstDate}
+                title={translate.number_days}
+                days_translate={translate.days}
+                form={form}
+              />
+            )}
+
+            <Travelers />
           </div>
 
-          {checked && (
-            <DateSelector
-              name='last_date'
-              beginDate={firstDate}
-              title={translate.number_days}
-              days_translate={translate.days}
-              form={form}
-            />
-          )}
-
-          <Travelers />
-
-          <Button type='submit' className='w-full bg-[#0066b3] text-lg py-6 rounded-lg'>{translate.calc}</Button>
+          <Button
+            type='submit'
+            className='w-full bg-[#0066b3] text-lg py-7 mt-4 rounded-lg'
+          >
+            {translate.calc}
+          </Button>
         </form>
       )}
     </Form>

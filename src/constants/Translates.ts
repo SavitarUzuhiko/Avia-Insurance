@@ -29,7 +29,14 @@ export const FormTranslate = [
     years: "years",
     add_tourist:"Add tourist",
     tourist:"tourist",
-    calc:"Calculate"
+    calc:"Calculate",
+    Your_contract:"Your contract",
+    insurance_policy: "What is included in Your insurance policy:",
+    partnership:"In partnership with:",
+    insurance_coverage:"Insurance coverage:",
+    services:['Covid-19',"Doctor's home visit","Hospitalization","Visit to the clinic","Medication costs","Transportation"],
+    cost_policy:"Cost of the insurance policy:",
+    show_all:"Show all",
   },
   {
   lang: "RU",
@@ -46,7 +53,14 @@ export const FormTranslate = [
   years: "лет",
   add_tourist:"Добавить туристa",
   tourist: "турист",
-  calc:"Рассчитать"
+  calc:"Рассчитать",
+  Your_contract:"Ваш страховой договор",
+  insurance_policy: "Что входит в Ваш страховой полис:",
+  partnership:"В партнерстве с:",
+  insurance_coverage:"Страховое покрытие:",
+  services:["Covid-19","Вызов врача на дом","Госпитализация","Посещение клиники","Затраты на медикаменты","Транспортировка"],
+  cost_policy:"Стоимость страхового полиса:",
+  show_all:"Показать все",
 },
 {
   lang: "UZ",
@@ -63,6 +77,13 @@ export const FormTranslate = [
   years: "yosh",
   add_tourist:"Turist qo'shish",
   tourist: "turist",
-  calc:"Hisoblash"
+  calc:"Hisoblash",
+  Your_contract:"Sizning kontrakt",
+  insurance_policy: "Sizning sug'urta polisi haqida qo'liq:",
+  partnership:"Birlashma bilan:",
+  insurance_coverage:"Sug'urta ko'rsatish:",
+  services:["Covid-19","Shifokorning uyga tashrifi","Kasalxonaga yotqizish","Klinikaga tashrif buyurish","Dori-darmon xarajatlari","Transport"],
+  cost_policy:"Sug'urta polisi narxi:",
+  show_all:"Hammasini ko'rsatish",
 }
 ]

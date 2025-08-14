@@ -82,8 +82,9 @@ export function Dropdown({ children, age_translate }: Props) {
                   e.stopPropagation();
                   dispatch(deleteTravelers(idx));
                 }}
+                className='p-1 bg-gray-500 rounded-full text-white'
               >
-                <X className='cursor-pointer' />
+                <X className='cursor-pointer text-white' />
               </span>
             </DropdownMenuItem>
           ))}
