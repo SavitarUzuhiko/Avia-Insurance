@@ -1,4 +1,4 @@
-import logo from '../../../public/Vector.png';
+import logo from '@/assets/Vector.png';
 import { MapPin, Phone } from 'lucide-react';
 import { MultiLanguage , PopoverLocation} from './components';
 

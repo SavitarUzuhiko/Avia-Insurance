@@ -37,6 +37,8 @@ export const FormTranslate = [
     services:['Covid-19',"Doctor's home visit","Hospitalization","Visit to the clinic","Medication costs","Transportation"],
     cost_policy:"Cost of the insurance policy:",
     show_all:"Show all",
+    activity:"Activity",
+    activity_info:"If you plan to exercise, include this risk",
   },
   {
   lang: "RU",
@@ -61,6 +63,8 @@ export const FormTranslate = [
   services:["Covid-19","Вызов врача на дом","Госпитализация","Посещение клиники","Затраты на медикаменты","Транспортировка"],
   cost_policy:"Стоимость страхового полиса:",
   show_all:"Показать все",
+  activity:"Деятельность",
+  activity_info:"Если вы планируете занятия спортом включите данный риск"
 },
 {
   lang: "UZ",
@@ -85,5 +89,7 @@ export const FormTranslate = [
   services:["Covid-19","Shifokorning uyga tashrifi","Kasalxonaga yotqizish","Klinikaga tashrif buyurish","Dori-darmon xarajatlari","Transport"],
   cost_policy:"Sug'urta polisi narxi:",
   show_all:"Hammasini ko'rsatish",
+  activity:"Faoliyat",
+  activity_info:"Siz sport bilan shug'ullanishni reja qilmoqchi bo'lsangiz, bu riskni qo'shing"
 }
 ]

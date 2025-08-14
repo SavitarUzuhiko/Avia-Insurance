@@ -70,7 +70,6 @@ export function FormDate() {
           
         >
           <div className='space-y-3 p-3 bg-[#fff] rounded-xl shadow-lg'>
-            {/* first_date */}
             <DatePicker
               ref={firstDateRef}
               name='first_date'
