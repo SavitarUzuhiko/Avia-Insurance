@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type State = {
   data: {
-  first_name: string;
-  last_name: string;
-  birth_date: Date;
+  firstName: string;
+  lastName: string;
+  birthDate: Date | string;
   }[]
 }
 
@@ -17,11 +17,11 @@ export const TravelersSlice = createSlice({
   initialState,
   reducers: {
     addTravelers: (state, action) => {
-      state.data.push(action.payload)
+      state.data.push(...action.payload)
     }
   }
 })
 
-export const { } = TravelersSlice.actions
+export const { addTravelers } = TravelersSlice.actions
 
 export default TravelersSlice.reducer

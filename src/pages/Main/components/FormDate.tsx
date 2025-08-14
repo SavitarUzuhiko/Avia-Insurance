@@ -14,6 +14,7 @@ import { setDays } from '@/app/slices/AviaSlice';
 import { FormTranslate } from '@/constants';
 import { Travelers } from './Travelers';
 import { toast, Toaster } from 'sonner';
+import { addTravelers } from '@/app/slices/Travellers.slice';
 
 const FormSchema = z.object({
   first_date: z.date({ error: 'A date is required.' }),
@@ -58,6 +59,7 @@ export function FormDate() {
       ),
     };
     console.log(submittedData);
+    dispatch(addTravelers(travelers.map(() => ({ firstName: "", lastName: "", birthDate: "" }))))
     toast.success('Form submitted successfully. Check your console.');
   };
 

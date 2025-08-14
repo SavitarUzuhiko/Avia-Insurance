@@ -14,19 +14,26 @@ import type { UseFormReturn } from 'react-hook-form';
 import { daysToDate } from '../hook';
 import { days_array } from '@/constants';
 
-type Props = {
-  name: 'first_date' | 'last_date';
-  title: string;
-  form: UseFormReturn<
-    { first_date: Date; last_date: Date },
-    any,
-    { first_date: Date; last_date: Date }
-  >;
-  beginDate: Date;
-  days_translate:string
+type DateFormShape = {
+  first_date: Date;
+  last_date: Date;
 };
 
-export const DateSelector = ({ name, title, form, beginDate, days_translate }: Props) => {
+type Props = {
+  name: keyof DateFormShape;
+  title: string;
+  form: UseFormReturn<DateFormShape>;
+  beginDate: Date;
+  days_translate: string;
+};
+
+export const DateSelector = ({
+  name,
+  title,
+  form,
+  beginDate,
+  days_translate,
+}: Props) => {
   return (
     <FormField
       control={form.control}
@@ -36,7 +43,8 @@ export const DateSelector = ({ name, title, form, beginDate, days_translate }: P
           field.value instanceof Date
             ? String(
                 Math.round(
-                  (field.value.getTime() - beginDate.getTime()) / (1000 * 60 * 60 * 24)
+                  (field.value.getTime() - beginDate.getTime()) /
+                    (1000 * 60 * 60 * 24)
                 )
               )
             : '';
@@ -49,19 +57,20 @@ export const DateSelector = ({ name, title, form, beginDate, days_translate }: P
               onValueChange={(value) => {
                 const days = parseInt(value, 10);
                 if (!isNaN(days) && !isNaN(beginDate.getTime())) {
-                  const newDate = daysToDate(beginDate, days);
-                  field.onChange(newDate);
+                  field.onChange(daysToDate(beginDate, days));
                 }
               }}
             >
               <FormControl>
-                <SelectTrigger className='w-full bg-white'>
+                <SelectTrigger className="w-full bg-white">
                   <SelectValue placeholder="Select a date" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {days_array.map(day => (
-                  <SelectItem key={day} value={(day-1).toString()}>{day} {days_translate}</SelectItem>
+                {days_array.map((day) => (
+                  <SelectItem key={day} value={(day - 1).toString()}>
+                    {day} {days_translate}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
